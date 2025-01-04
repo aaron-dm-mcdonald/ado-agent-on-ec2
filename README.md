@@ -12,7 +12,10 @@ This script automates the setup of a self-hosted Azure DevOps (ADO) agent on an 
 
 ## Example Config
 
-You must have a
+You must have the following: 
+- Organization Name for ADO
+- ADO Personal Access Token succesfully created
+- An Agent Pool created
 
 These **must** be changed:
 
