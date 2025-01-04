@@ -12,6 +12,8 @@ This script automates the setup of a self-hosted Azure DevOps (ADO) agent on an 
 
 ## Example Config
 
+You must have a
+
 These **must** be changed:
 
 - ADO_URL="https://dev.azure.com/sandbox-12345"
@@ -29,11 +31,10 @@ These **must** be changed:
 
 The script performs the following steps:
 
-1. **Update System Packages**:
-   Ensures the system is up-to-date by running `yum` and `dnf` update commands.
-2. **Install Dependencies**:
-   Installs required packages such as `libicu` to support the ADO agent.
-3. **Set Variables**:
+1. **Update and Install System Packages**:
+   - Ensures the system is up-to-date by running `yum` and `dnf` update commands.
+   - Install some .NET dependencies with dnf.
+2. **Set Enviromental Variables**:
    Prompts you to configure essential variables like `ADO_URL`, `ADO_PAT`, and `POOL_NAME`.
 4. **Download and Extract ADO Agent**:
    Fetches the latest version of the ADO agent and extracts it into a dedicated directory.
