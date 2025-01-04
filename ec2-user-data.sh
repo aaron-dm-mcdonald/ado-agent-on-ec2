@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Ensure it is a public instance with a SG with SSH and HTTP(S)
 
 # Update system packages
 sudo yum update -y
@@ -8,15 +7,10 @@ sudo dnf update -y
 sudo dnf install -y libicu 
 
 # Variables (replace with your values)
-ADO_URL="https://dev.azure.com/<your organization here>"
-ADO_PAT="<your ADO Token here>"
-POOL_NAME="<ADO agent pool name here>"
+ADO_URL="https://dev.azure.com/sandbox-12345"
+ADO_PAT="1234567890ABCDEFGHIJKLMNOXYZ1234567890111111111111111111111111111111"
+POOL_NAME="ec2-pool"
 AGENT_NAME="EC2-Agent-$(hostname)" # You can optionally change this but I would leave it alone as it will always be unique
-
-# Example Config
-# ADO_URL="https://dev.azure.com/sandbox-test-123456"
-# ADO_PAT="1234567890ABCDEFGHIJKLMNOXYZ1234567890"
-# POOL_NAME="ec2_pool"
 
 
 # Grab agent tarball
