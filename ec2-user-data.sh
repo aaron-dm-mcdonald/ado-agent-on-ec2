@@ -1,25 +1,28 @@
 #!/bin/bash
 
-
 # Update system packages
 sudo yum update -y
 sudo dnf update -y
-sudo dnf install -y libicu 
+sudo dnf install -y libicu
+
+exec > /var/log/user-data.log 2>&1
+
+# Ensure we are in home directory 
+cd /home/ec2-user
 
 # Variables (replace with your values)
-ADO_URL="https://dev.azure.com/sandbox-12345"
-ADO_PAT="1234567890ABCDEFGHIJKLMNOXYZ1234567890111111111111111111111111111111"
-POOL_NAME="ec2-pool"
-AGENT_NAME="EC2-Agent-$(hostname)" # You can optionally change this but I would leave it alone as it will always be unique
-
+export ADO_URL="https://dev.azure.com/sandbox-test-1323634"
+export ADO_PAT="8Uxno3HFAQA4jswmnuXzaDpXwVMZRvf25zU0umTnCJ5CE7hSI8lXJQQJ99BAACAAAAAAAAAAAAAGAZDOAJUN"
+export POOL_NAME="ec2-pool"
+export AGENT_NAME="EC2-Agent-$(hostname)" # You can optionally change this but I would leave it alone as it will always be unique
 
 # Grab agent tarball
-mkdir myagent && cd myagent
+mkdir -p myagent && cd myagent
 curl -O https://vstsagentpackage.azureedge.net/agent/3.248.0/vsts-agent-linux-x64-3.248.0.tar.gz
 tar zxvf ./vsts-agent-linux-x64-3.248.0.tar.gz
 
 # Configure the agent
-./config.sh --unattended \
+sudo -u ec2-user ./config.sh --unattended \
   --url "$ADO_URL" \
   --auth pat \
   --token "$ADO_PAT" \
